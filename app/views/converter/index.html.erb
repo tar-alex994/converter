@@ -1,0 +1,31 @@
+<div class="container">
+<div>
+<%= form_with url: "/", method: :get do |form|%>
+    <div class='label-text'><%= form.label :date, "Дата изготовления:"%></div>
+    <div><%= form.date_field :date, value: params[:date], class: 'size' %></div>
+    <% if params[:switch] or @storage_life %>
+        <div class='label-text'><%= form.label :storage_life, "Срок годности:"%></div>
+        <div><%= form.number_field :storage_life, value: @storage_life, class: 'storage_life' %></div>
+    <% else%>
+        <div class='label-text'><%= form.label :expiration_date, "Годен до:"%></div>
+        <div><%= form.date_field :expiration_date, value: params[:expiration_date], class: :size %></div>
+    <% end %>
+    <%= form.submit 'Рассчитать', class: 'size'%>
+<% end %>
+</div>
+
+
+
+<% if @date_of_60_precent %>
+    <div>
+        <p class='input'>Браковать c: <div class="text"><%= @date_of_60_precent.strftime "%d - %m - %y" %></div></p>
+        <%= button_to 'Очистить', '/', method: :get %>
+    </div>
+<% end %>
+
+<% if params[:switch] or @storage_life %>
+    <div><%= button_to "Поменять на дату", '/', method: :get%></div>
+<% else %>
+    <div><%= button_to "Поменять на срок годности", '/', method: :get, params: { switch: true } %></div>
+<% end %>
+</div>
