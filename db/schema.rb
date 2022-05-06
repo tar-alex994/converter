@@ -10,8 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_06_185300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "logs", force: :cascade do |t|
+    t.string "remote_ip"
+    t.string "request_id"
+    t.string "method"
+    t.string "query_string"
+    t.string "path"
+    t.string "request_parameters"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["method"], name: "index_logs_on_method"
+    t.index ["query_string"], name: "index_logs_on_query_string"
+    t.index ["remote_ip"], name: "index_logs_on_remote_ip"
+  end
 
 end
