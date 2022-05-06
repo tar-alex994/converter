@@ -1,0 +1,17 @@
+<% if flash[:error] %>
+    <p style="color:red"><%= flash[:error] %></p>
+<% end %>
+
+<% if session[:admin] %>
+    <%= button_to 'Выйти', admin_session_path, method: :delete %>
+<% else %>
+    <%= form_with url: admin_session_path do |form| %>
+        <%= form.label :login, 'Логин'%>
+        <%= form.text_field :login, value: @login %>
+
+        <%= form.label :password, 'Пароль' %>
+        <%= form.password_field :password %>
+
+        <%= form.submit "Войти" %>
+    <% end %>
+<% end %>

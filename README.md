@@ -4,6 +4,12 @@
     - расчитать, когда у продукта останется меньше 40% от срока годности
     - посмотреть логи
 
+Настройка приложения:
+    - добавьте в config/credentials.yml.enc с помощью "bin/rails credentials:edit" настройки для учетной записи admin:
+        admin:
+          login: login
+          password: password
+
 База данных: PostgreSQL.
     - для development и test окружения настройки по умолчанию.
     - для production среды с помощью "bin/rails credentials:edit" добавьте следущие настройки:
@@ -15,6 +21,7 @@
           database: database
     либо задайте конфигурацию с помощью переменной окружения
         DATABASE_URL=postgresql://username:passsword@host:port/database
+
 
 * Ruby version
 
