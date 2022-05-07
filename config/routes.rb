@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     root "profile#index"
 
     get "logs/from_controllers", to: "logs#from_controllers"
+    get "logs/from_file",        to: "logs#from_file"
 
     get    'session', to: "session#index"
     post   'session', to: "session#create"

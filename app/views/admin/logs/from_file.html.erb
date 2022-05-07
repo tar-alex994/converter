@@ -1,0 +1,10 @@
+<h2>Логи приложения из файла log/production.log</h2>
+
+<div>
+    <% @logs.each do |log| %>
+        <%= log %>
+        <br>
+    <% end %>
+</div>
+
+<%= link_to 'Вернуться в панель администратора', admin_root_path%>
