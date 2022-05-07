@@ -1,4 +1,4 @@
-class Admin::LogsController < ApplicationController
+class Admin::LogsController < Admin::AdminController
     def from_controllers
         @logs = Log.all
     end
