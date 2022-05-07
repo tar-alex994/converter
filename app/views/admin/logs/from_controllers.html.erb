@@ -1,0 +1,9 @@
+<h2>Логи из контроллера</h2>
+
+<div>
+    <% @logs.reverse_each do |log|%>
+        <p><%= log.attributes.to_json %></p>
+    <% end %>
+</div>
+
+<%= link_to 'Вернуться в панель администратора', admin_root_path%>
