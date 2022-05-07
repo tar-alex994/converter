@@ -1,4 +1,6 @@
-class Admin::SessionController < ApplicationController
+class Admin::SessionController < Admin::AdminController
+  skip_before_action :authenticate_admin, only: [:index, :create]
+
   def index
   end
 
@@ -8,7 +10,7 @@ class Admin::SessionController < ApplicationController
 
     if params[:login] == admin and params[:password] == password
       session[:admin] = true
-      redirect_to admin_session_path
+      redirect_to admin_root_path
     else
       @login            = params[:login]
       flash.now[:error] = 'Неверный логин или пароль.'
