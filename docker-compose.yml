@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: build_args.pg_user
+      POSTGRES_PASSWORD: build_args.pg_password
+    volumes:
+      - /var/converter_application/pgdata:/var/lib/postgresql/data
+  
+  application:
+    build: .
+    command: /bin/sh -c "
+      sleep 5 && 
+      bin/rails db:prepare RAILS_ENV=production &&
+      bin/rails s -e production" 
+    depends_on:
+      - db
+    volumes:
+      - /var/converter_application/rails_logs:/usr/application/log
+    ports:
+      - "80:3000"
