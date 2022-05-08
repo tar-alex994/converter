@@ -1,0 +1,10 @@
+.git
+.gitattributes
+.gitignore
+
+log/development.log
+log/production.log
+
+public/assets
+
+tmp/**
