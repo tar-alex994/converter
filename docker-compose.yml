@@ -4,13 +4,16 @@ services:
   db:
     image: postgres:13-alpine
     environment:
-      POSTGRES_USER: build_args.pg_user
-      POSTGRES_PASSWORD: build_args.pg_password
+      POSTGRES_USER: ${PG_USER-postgres}
+      POSTGRES_PASSWORD: ${PG_PASSWORD-password}
+      POSTGRES_DB: converter_application
     volumes:
       - /var/converter_application/pgdata:/var/lib/postgresql/data
   
   application:
     build: .
+    environment:
+      DATABASE_URL: postgresql://${PG_USER-postgres}:${PG_PASSWORD-password}@db:5432/converter_application
     command: /bin/sh -c "
       sleep 5 && 
       bin/rails db:prepare RAILS_ENV=production &&
