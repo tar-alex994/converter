@@ -10,17 +10,18 @@
           login: login
           password: password
 
-База данных: PostgreSQL.
+Настройки базы данных: используется PostgreSQL.
     - для development и test окружения настройки по умолчанию.
     - для production среды с помощью "bin/rails credentials:edit" добавьте следущие настройки:
         db:
-          host: host
-          port: port
-          username: username
-          password: password
-          database: database
-    либо задайте конфигурацию с помощью переменной окружения
+          host: host_for_db
+          port: port_for_db
+          username: username_for_db
+          password: password_for_db
+          database: your_database
+    либо задайте конфигурацию при запуске с помощью переменной окружения
         DATABASE_URL=postgresql://username:passsword@host:port/database
+
 
 
 * Ruby version
