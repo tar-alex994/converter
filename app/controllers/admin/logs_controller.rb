@@ -20,6 +20,7 @@ class Admin::LogsController < Admin::AdminController
   def from_file
     @current_page = current_page || 1
     @logs         = File.readlines Rails.application.root + "log/production.log"
+    @logs         = log_filter(@logs)
     page_size     = 20
     @last_page    = @logs.size / page_size + (@logs.size % page_size == 0 ? 0 : 1)
 
@@ -39,5 +40,13 @@ class Admin::LogsController < Admin::AdminController
   private
     def current_page
       params[:current_page]&.match(/\A\d+/)&.to_s&.to_i
+    end
+
+    def log_filter logs
+      if params[:filter]
+        logs.select { |log| log.downcase.include?(params[:filter].downcase) } 
+      else
+        logs
+      end
     end
 end
