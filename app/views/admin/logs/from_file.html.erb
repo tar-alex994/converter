@@ -1,5 +1,9 @@
 <h2>Логи приложения из файла log/production.log</h2>
 
+<p>
+<%= link_to 'Вернуться в панель администратора', admin_root_path%>
+</p>
+
 <div>
     <% @logs.each do |log| %>
         <%= log %>
@@ -7,4 +11,18 @@
     <% end %>
 </div>
 
-<%= link_to 'Вернуться в панель администратора', admin_root_path%>
+<p>Страница <%= @current_page %> из <%= @last_page %></p>
+
+<p>
+<% unless @current_page == 1 %>
+    <%= link_to "Предыдущая страница", admin_logs_from_file_path + "?current_page=#{@current_page - 1}"%> 
+<% end %>
+<% unless @current_page == @last_page %>
+    <%= link_to "Следующая страница", admin_logs_from_file_path + "?current_page=#{@current_page + 1}"%>
+<% end %>
+</p>
+
+<%= form_with url: admin_logs_from_file_path, method: :get do |form| %>
+    <%= form.submit "Перейти на " %>
+    <%= form.number_field :current_page %>
+<% end %>
