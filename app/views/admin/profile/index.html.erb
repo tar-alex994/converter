@@ -1,7 +1,11 @@
 <h1>Панель админа</h1>
 
+<p>
 <%= link_to "Логи из контроллера", admin_logs_from_controllers_path %>
-<br>
+</p>
+
+<p>
 <%= link_to "Логи приложения из файла log/production.log", admin_logs_from_file_path %>
+</p>
 
 <%= button_to 'Выйти', admin_session_path, method: :delete %>
