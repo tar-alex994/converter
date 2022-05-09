@@ -8,3 +8,8 @@ log/production.log
 public/assets
 
 tmp/**
+
+.dockerignore
+Dockerfile
+docker-compose.yml
+docker_compose_for_server
