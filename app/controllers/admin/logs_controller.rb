@@ -1,6 +1,20 @@
 class Admin::LogsController < Admin::AdminController
   def from_controllers
-      @logs = Log.all
+    @current_page = current_page || 1
+    page_size     = 6
+    log_count     = Log.count
+    @last_page    = log_count / page_size + (log_count % page_size == 0 ? 0 : 1)
+    offset        = (@current_page - 1) * page_size
+
+    if @current_page == 0
+      offset        = 0
+      @current_page = 1
+    elsif @current_page > @last_page
+      @current_page = @last_page
+      offset        = (@current_page - 1) * page_size
+    end
+
+    @logs = Log.order(:created_at).offset(offset).limit(page_size)
   end
 
   def from_file

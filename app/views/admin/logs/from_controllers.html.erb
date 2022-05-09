@@ -1,9 +1,36 @@
 <h2>Логи из контроллера</h2>
 
+<p>
+<%= link_to 'Вернуться в панель администратора', admin_root_path%>
+</p>
+
 <div>
-    <% @logs.reverse_each do |log|%>
+    <% @logs.each do |log|%>
         <p><%= log.attributes.to_json %></p>
+        <hr>
     <% end %>
 </div>
 
-<%= link_to 'Вернуться в панель администратора', admin_root_path%>
+<p>
+Страница <%= @current_page %> из <%= @last_page %>
+<% unless @current_page == 1 %>
+    <%= link_to "Начальная страница", admin_logs_from_controllers_path %>
+<% end %>
+<% unless @current_page == @last_page %>
+    <%= link_to "Конечная страница", admin_logs_from_controllers_path + "?current_page=#{@last_page}" %>
+<% end %>
+</p>
+
+<p>
+<% unless @current_page == 1 %>
+    <%= link_to "Предыдущая страница", admin_logs_from_controllers_path + "?current_page=#{@current_page - 1}"%> 
+<% end %>
+<% unless @current_page == @last_page %>
+    <%= link_to "Следующая страница", admin_logs_from_controllers_path + "?current_page=#{@current_page + 1}"%>
+<% end %>
+</p>
+
+<%= form_with url: admin_logs_from_controllers_path, method: :get do |form| %>
+    <%= form.submit "Перейти на " %>
+    <%= form.number_field :current_page %>
+<% end %>
