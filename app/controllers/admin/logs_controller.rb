@@ -17,6 +17,10 @@ class Admin::LogsController < Admin::AdminController
     @logs = Log.order(:created_at).offset(offset).limit(page_size)
   end
 
+  def from_controllers_all
+    @logs = Log.order(:created_at).all
+  end
+
   def from_file
     @current_page = current_page || 1
     @logs         = File.readlines Rails.application.root + "log/production.log"

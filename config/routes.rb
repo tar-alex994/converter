@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root "profile#index"
 
-    get "logs/from_controllers", to: "logs#from_controllers"
-    get "logs/from_file",        to: "logs#from_file"
-    get "logs/from_file/all",    to: "logs#from_file_all"
+    get "logs/from_controllers",     to: "logs#from_controllers"
+    get "logs/from_controllers/all", to: "logs#from_controllers_all"
+    get "logs/from_file",            to: "logs#from_file"
+    get "logs/from_file/all",        to: "logs#from_file_all"
 
     get    'session', to: "session#index"
     post   'session', to: "session#create"

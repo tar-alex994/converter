@@ -1,0 +1,13 @@
+<h2>Логи из контроллеров одним файлом</h2>
+
+<p>
+<%= link_to 'Вернуться в панель администратора', admin_root_path%>
+<%= link_to 'Показать все логи из контроллера постранично', admin_logs_from_controllers_path %>
+</p>
+
+<div>
+    <% @logs.each do |log|%>
+        <p><%= log.attributes.to_json %></p>
+        <hr>
+    <% end %>
+</div>
