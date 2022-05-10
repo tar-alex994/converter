@@ -7,7 +7,17 @@
 
 <div>
     <% @logs.each do |log|%>
-        <p><%= log.attributes.to_json %></p>
+        <p>
+            создан: <%= log.created_at %><br>
+            последнее обновление: <%= log.updated_at %><br>
+            id: <%= log.id %><br>
+            request_id: <%= log.request_id %><br>
+            ip: <%= log.remote_ip %><br>
+            method: <%= log.method %><br>
+            path: <%= log.path %><br>
+            get параметры: <%= log.query_string %><br>
+            post параметры: <%= log.request_parameters %><br>
+        </p>
         <hr>
     <% end %>
 </div>
