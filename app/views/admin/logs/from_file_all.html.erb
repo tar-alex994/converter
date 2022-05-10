@@ -1,0 +1,20 @@
+<h2>Логи приложения одной страницей из файла log/production.log</h2>
+
+<p>
+<%= link_to 'Вернуться в панель администратора', admin_root_path%>
+<%= link_to "Показат все логи постранично", admin_logs_from_file_path%>
+<%= form_with url: admin_logs_from_file_all_path, method: :get do |form|%>
+    <%= form.text_field :filter, value: params[:filter]%>
+    <%= form.submit "Поиск"%>
+<% end %>
+<%= button_to "Очистить", admin_logs_from_file_path, method: :get %>
+</p>
+
+<div>
+    <% line_indentation = @logs.size.to_s.size %>
+    <% @logs.each_with_index do |log, idx| %>
+        <span style="white-space:pre"><%= "#{idx + 1}#{"  " * (line_indentation - (idx+1).to_s.size)} |" %></span>
+        <%= log %>
+        <br>
+    <% end %>
+</div>

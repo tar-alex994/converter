@@ -37,6 +37,11 @@ class Admin::LogsController < Admin::AdminController
     @logs = @logs[begin_log, page_size]
   end
 
+  def from_file_all
+    @logs = File.readlines(Rails.application.root + "log/production.log")
+    @logs = log_filter(@logs)
+  end
+
   private
     def current_page
       params[:current_page]&.match(/\A\d+/)&.to_s&.to_i

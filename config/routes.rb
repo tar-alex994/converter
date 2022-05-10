@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
     get "logs/from_controllers", to: "logs#from_controllers"
     get "logs/from_file",        to: "logs#from_file"
+    get "logs/from_file/all",    to: "logs#from_file_all"
 
     get    'session', to: "session#index"
     post   'session', to: "session#create"
