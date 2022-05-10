@@ -19,6 +19,13 @@ class Admin::LogsController < Admin::AdminController
 
   def from_controllers_all
     @logs = Log.order(:created_at).all
+    @logs = @logs.where("id = ?", params[:id])                                             if filter? :id
+    @logs = @logs.where("remote_ip LIKE ?", "%" + params[:ip] + "%")                       if filter? :ip
+    @logs = @logs.where("query_string LIKE ?", "%" + params[:get_parameters] + "%")        if filter? :get_parameters
+    @logs = @logs.where("method = ?", params[:method]&.upcase)                             if filter? :method
+    @logs = @logs.where("request_id = ?", "%" + params[:request_id] + "%")                 if filter? :request_id
+    @logs = @logs.where("path LIKE ?", "%" + params[:path] + "%")                          if filter? :path
+    @logs = @logs.where("request_parameters LIKE ?", "%" + params[:post_parameters] + "%") if filter? :post_parameters
   end
 
   def from_file
@@ -56,6 +63,14 @@ class Admin::LogsController < Admin::AdminController
         logs.select { |log| log.downcase.include?(params[:filter].downcase) } 
       else
         logs
+      end
+    end
+
+    def filter? attr
+      if params[attr] && !(params[attr].strip.empty?)
+        true
+      else
+        false
       end
     end
 end

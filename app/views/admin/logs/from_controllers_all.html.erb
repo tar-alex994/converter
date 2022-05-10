@@ -5,6 +5,44 @@
 <%= link_to 'Показать все логи из контроллера постранично', admin_logs_from_controllers_path %>
 </p>
 
+<details <%= "open" if params[:id]%>>
+    <summary>Отфильтровать логи</summary>
+    <%= form_with url: admin_logs_from_controllers_all_path, method: :get do |form| %>
+        <p>
+        <%= form.number_field :id, value: params[:id] %>
+        <%= form.label :id, " - id" %>
+        </p>
+        <p>
+        <%= form.text_field :request_id, value: params[:request_id] %>
+        <%= form.label :request_id, " - request_id"%>
+        </p>
+        <p>
+        <%= form.text_field :ip, value: params[:ip] %>
+        <%= form.label :ip, " - ip"%>
+        </p>
+        <p>
+        <%= form.text_field :method, value: params[:method] %>
+        <%= form.label :method, " - method"%>
+        </p>
+        <p>
+        <%= form.text_field :path, value: params[:path] %>
+        <%= form.label :path, " - path"%>
+        </p>
+        <p>
+        <%= form.text_field :get_parameters, value: params[:get_parameters] %>
+        <%= form.label :get_parameters, " - get параметры"%>
+        </p>
+        <p>
+        <%= form.text_field :post_parameters, value: params[:post_parameters] %>
+        <%= form.label :post_parameters, " - post параметры"%>
+        </p>
+        <%= form.submit "Отфильтровать" %>
+    <% end %>
+    <br>
+    <%= button_to "Очистить", admin_logs_from_controllers_all_path, method: :get %>
+</details>
+<hr>
+
 <div>
     <% @logs.each do |log|%>
         <p>
