@@ -23,10 +23,11 @@
 
 <p>
 <% unless @current_page == 1 %>
-    <%= link_to "Предыдущая страница", admin_logs_from_controllers_path + "?current_page=#{@current_page - 1}"%> 
+    <%= link_to "Предыдущая страница(shift + ←)", admin_logs_from_controllers_path + "?current_page=#{@current_page - 1}", id: "left" %> 
 <% end %>
+<span style="white-space:pre">           </span>
 <% unless @current_page == @last_page %>
-    <%= link_to "Следующая страница", admin_logs_from_controllers_path + "?current_page=#{@current_page + 1}"%>
+    <%= link_to "Следующая страница(shift + →)", admin_logs_from_controllers_path + "?current_page=#{@current_page + 1}", id: "right" %>
 <% end %>
 </p>
 

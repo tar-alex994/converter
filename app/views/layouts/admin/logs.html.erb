@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Converter</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <script>
+      document.addEventListener('keydown', function(event){
+        if (document.getElementById("right") && event.shiftKey && 'ArrowRight' == event.key ) {
+          window.location.href = document.getElementById("right").href;
+        };
+
+        if (document.getElementById("left") && event.shiftKey && 'ArrowLeft' == event.key ) {
+          window.location.href = document.getElementById("left").href;
+        };
+      });
+    </script>
+    
+    <%= yield %>
+  </body>
+</html>

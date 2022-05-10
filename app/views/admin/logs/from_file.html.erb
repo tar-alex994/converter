@@ -29,6 +29,7 @@
         )
     %>
 <% end %>
+<span style="white-space:pre">     </span>
 <% unless @current_page == @last_page %>
     <%= link_to(
           "Конечная страница",
@@ -41,15 +42,18 @@
 <p>
 <% unless @current_page == 1 %>
     <%= link_to(
-          "Предыдущая страница",
-          admin_logs_from_file_path + "?current_page=#{@current_page - 1}" + (params[:filter] ? "&filter=#{params[:filter]}" : "") 
+          "Предыдущая страница(shift + ←)",
+          admin_logs_from_file_path + "?current_page=#{@current_page - 1}" + (params[:filter] ? "&filter=#{params[:filter]}" : ""),
+          id: "left"
         )
     %> 
 <% end %>
+<span style="white-space:pre">           </span>
 <% unless @current_page == @last_page %>
     <%= link_to(
-          "Следующая страница", 
-          admin_logs_from_file_path + "?current_page=#{@current_page + 1}" + (params[:filter] ? "&filter=#{params[:filter]}" : "")
+          "Следующая страница(shift + →)", 
+          admin_logs_from_file_path + "?current_page=#{@current_page + 1}" + (params[:filter] ? "&filter=#{params[:filter]}" : ""),
+          id: "right"
         )
     %>
 <% end %>
