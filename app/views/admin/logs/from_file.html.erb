@@ -2,6 +2,7 @@
 
 <p>
 <%= link_to 'Вернуться в панель администратора', admin_root_path%>
+<%= link_to "Показат все логи одной страницей", admin_logs_from_file_all_path%>
 <%= form_with url: admin_logs_from_file_path, method: :get do |form|%>
     <%= form.text_field :filter, value: params[:filter]%>
     <%= form.submit "Поиск"%>
@@ -10,7 +11,10 @@
 </p>
 
 <div>
-    <% @logs.each do |log| %>
+    <% line_indentation = (@current_page * 20).to_s.size %>
+    <% @logs.each_with_index do |log, idx| %>
+        <% current_line = (@current_page - 1) * 20 + idx + 1 %>
+        <span style="white-space:pre"><%= "#{current_line}#{"  " * (line_indentation - (current_line).to_s.size)} |" %></span>
         <%= log %>
         <br>
     <% end %>
@@ -45,7 +49,7 @@
 <% unless @current_page == @last_page %>
     <%= link_to(
           "Следующая страница", 
-          admin_logs_from_file_path + "?current_page=#{@current_page + 1}" + (params[:filter] ? "&filter=#{params[:filter]}" : "") 
+          admin_logs_from_file_path + "?current_page=#{@current_page + 1}" + (params[:filter] ? "&filter=#{params[:filter]}" : "")
         )
     %>
 <% end %>
