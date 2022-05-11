@@ -1,11 +1,21 @@
 class Admin::LogsController < Admin::AdminController
   def from_controllers
+    @logs = Log.order(:created_at).all
+    @logs = @logs.where("id = ?", params[:id])                                             if filter?(:id)
+    @logs = @logs.where("remote_ip LIKE ?", "%" + params[:ip] + "%")                       if filter?(:ip)
+    @logs = @logs.where("query_string LIKE ?", "%" + params[:get_parameters] + "%")        if filter?(:get_parameters)
+    @logs = @logs.where("method = ?", params[:method]&.upcase)                             if filter?(:method)
+    @logs = @logs.where("request_id = ?", "%" + params[:request_id] + "%")                 if filter?(:request_id)
+    @logs = @logs.where("path LIKE ?", "%" + params[:path] + "%")                          if filter?(:path) && params[:exact_match] == "0"
+    @logs = @logs.where("path = ?", params[:path])                                         if filter?(:path) && params[:exact_match] == "1"
+    @logs = @logs.where("request_parameters LIKE ?", "%" + params[:post_parameters] + "%") if filter?(:post_parameters)
+
     @current_page = current_page || 1
     page_size     = 6
-    log_count     = Log.count
-    @last_page    = log_count / page_size + (log_count % page_size == 0 ? 0 : 1)
+    log_count     = @logs.count
+    @last_page    = log_count / page_size + (log_count % page_size == 0 && log_count > 0 ? 0 : 1)
     offset        = (@current_page - 1) * page_size
-
+    
     if @current_page == 0
       offset        = 0
       @current_page = 1
@@ -13,8 +23,7 @@ class Admin::LogsController < Admin::AdminController
       @current_page = @last_page
       offset        = (@current_page - 1) * page_size
     end
-
-    @logs = Log.order(:created_at).offset(offset).limit(page_size)
+    @logs = @logs.offset(offset).limit(page_size)
   end
 
   def from_controllers_all
