@@ -1,8 +1,14 @@
 <h2>Логи из контроллеров одним файлом</h2>
 
 <p>
-<%= link_to 'Вернуться в панель администратора', admin_root_path%>
-<%= link_to 'Показать все логи из контроллера постранично', admin_logs_from_controllers_path %>
+<%= link_to 'Вернуться в панель администратора', admin_root_path %>
+
+<%= 
+link_to(
+  'Показать все логи из контроллера постранично', 
+  admin_logs_from_controllers_path(params: filter_params) 
+)
+%>
 </p>
 
 <details <%= "open" if params[:id]%>>
@@ -27,6 +33,10 @@
         <p>
         <%= form.text_field :path, value: params[:path] %>
         <%= form.label :path, " - path"%>
+        </p>
+        <p>
+        <%= form.check_box :exact_match, checked: (params[:exact_match] == '1' ? true : false) %>
+        <%= form.label :exact_match, "Точное совпадение path" %>
         </p>
         <p>
         <%= form.text_field :get_parameters, value: params[:get_parameters] %>
