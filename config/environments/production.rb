@@ -77,4 +77,34 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.before_initialize do 
+    unless(Rails.application.credentials.smtp_server.address &&
+      Rails.application.credentials.smtp_server.port &&
+      Rails.application.credentials.smtp_server.user_name &&
+      Rails.application.credentials.smtp_server.password )
+
+      abort(
+        "\e[31m  Error of configuration!!!\e[0m\n"\
+        "  Add smtp_server configuration in /config/credentials.yml.enc with "\
+        "'bin/rails credentials:edit' :\n"\
+        "  Example:\n"\
+        "\n"\
+        "  smtp_server:\n"\
+        "    address: your_smtp_server_address.com\n"\
+        "    port: port\n"\
+        "    user_name: your_user_name\n"\
+        "    password: password\n" 
+      )
+    end
+  end
+
+  config.action_mailer.smtp_settings = {
+    address:        credentials.smtp_server.address,
+    port:           credentials.smtp_server.port,
+    user_name:      credentials.smtp_server.user_name,
+    password:       credentials.smtp_server.password,
+    authentication: :login,
+    ssl:            true
+  }
 end

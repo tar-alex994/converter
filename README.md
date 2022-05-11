@@ -22,6 +22,14 @@
     либо задайте конфигурацию при запуске с помощью переменной окружения
         DATABASE_URL=postgresql://username:passsword@host:port/database
 
+Настройка smtp сервера для отправки сообщений:
+    - добавьте в config/credentials.yml.enc с помощью "bin/rails credentials:edit" настройки для smtp сервера:
+        smtp_server:
+            address: your_smtp_server_address.ru
+            port: port
+            user_name: your_user_name
+            password: your_password
+
 Запуск приложения: 
     Сначала необходимо выполнить настройки для приложения и для базы данных(смотри выше). Затем есть 3 варианта:
         - локально для сред production, test, developmen через "bin/rails server"
