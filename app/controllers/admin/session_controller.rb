@@ -10,6 +10,9 @@ class Admin::SessionController < Admin::AdminController
 
     if params[:login] == admin and params[:password] == password
       session[:admin] = true
+
+      SendEmailJob.perform_later(request.remote_ip)
+
       redirect_to admin_root_path
     else
       @login            = params[:login]
