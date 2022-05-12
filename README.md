@@ -1,18 +1,23 @@
-# README
+# Это Rails-приложение позволяет:
+    * расчитать, когда у продукта останется меньше 40% от срока годности
+    * посмотреть логи
 
-Это Rails-приложение позволяет:
-    - расчитать, когда у продукта останется меньше 40% от срока годности
-    - посмотреть логи
-
-Настройка приложения:
-    - добавьте в config/credentials.yml.enc с помощью "bin/rails credentials:edit" настройки для учетной записи admin:
+## Настройка приложения:
+    * добавьте в config/credentials.yml.enc с помощью "bin/rails credentials:edit" настройки для учетной записи admin:
         admin:
           login: login
           password: password
+    
+    * только для среды production: настройка smtp сервера для отправки сообщений - добавьте в config/credentials.yml.enc с помощью "bin/rails credentials:edit" настройки для smtp сервера:
+        smtp_server:
+            address: your_smtp_server_address.ru
+            port: port
+            user_name: your_user_name
+            password: your_password
 
-Настройки базы данных: используется PostgreSQL.
-    - для development и test окружения настройки по умолчанию.
-    - для production среды с помощью "bin/rails credentials:edit" добавьте следущие настройки:
+## Настройки базы данных: используется PostgreSQL.
+    * для development и test окружения настройки по умолчанию.
+    * для production среды с помощью "bin/rails credentials:edit" добавьте следущие настройки:
         db:
           host: host_for_db
           port: port_for_db
@@ -22,24 +27,16 @@
     либо задайте конфигурацию при запуске с помощью переменной окружения
         DATABASE_URL=postgresql://username:passsword@host:port/database
 
-Настройка smtp сервера для отправки сообщений:
-    - добавьте в config/credentials.yml.enc с помощью "bin/rails credentials:edit" настройки для smtp сервера:
-        smtp_server:
-            address: your_smtp_server_address.ru
-            port: port
-            user_name: your_user_name
-            password: your_password
-
-Запуск приложения: 
+## Запуск приложения: 
     Сначала необходимо выполнить настройки для приложения и для базы данных(смотри выше). Затем есть 3 варианта:
-        - локально для сред production, test, developmen через "bin/rails server"
+        * локально для сред production, test, developmen через "bin/rails server"
 
-        - в отдельном контейнере для среды production с помощью
+        * в отдельном контейнере для среды production с помощью
             "docker build -t your_image_name ."
             и затем
             "docker run -d -p 80:3000 your_image_name"
 
-        - с помощью docker-compose вместе с базой данных:
+        * с помощью docker-compose вместе с базой данных:
             база данных будет запускаться на порту 5432 c базой converter_application
             необходимо передавать пользователя(PG_USER) и пароль(PG_PASSWORD)
             значения по умолчанию: 
@@ -63,23 +60,5 @@
             существующая база дынных и соотвественно пользователя и пароль нужно передавать для 
             этой бызы данных
 
-
-
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Версия ruby:
+    3.0.1
