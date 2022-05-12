@@ -8,62 +8,11 @@
     )%>
 </p>
 
-<details <%= "open" if params[:id]%>>
-    <summary>Отфильтровать логи</summary>
-    <%= form_with url: admin_logs_from_controllers_path, method: :get do |form| %>
-        <p>
-        <%= form.number_field :id, value: params[:id] %>
-        <%= form.label :id, " - id" %>
-        </p>
-        <p>
-        <%= form.text_field :request_id, value: params[:request_id] %>
-        <%= form.label :request_id, " - request_id"%>
-        </p>
-        <p>
-        <%= form.text_field :ip, value: params[:ip] %>
-        <%= form.label :ip, " - ip"%>
-        </p>
-        <p>
-        <%= form.text_field :method, value: params[:method] %>
-        <%= form.label :method, " - method"%>
-        </p>
-        <p>
-        <%= form.text_field :path, value: params[:path] %>
-        <%= form.label :path, " - path"%>
-        </p>
-        <p>
-        <%= form.check_box :exact_match, checked: (params[:exact_match] == '1' ? true : false) %>
-        <%= form.label :exact_match, "Точное совпадение path" %>
-        </p>
-        <p>
-        <%= form.text_field :get_parameters, value: params[:get_parameters] %>
-        <%= form.label :get_parameters, " - get параметры"%>
-        </p>
-        <p>
-        <%= form.text_field :post_parameters, value: params[:post_parameters] %>
-        <%= form.label :post_parameters, " - post параметры"%>
-        </p>
-        <%= form.submit "Отфильтровать" %>
-    <% end %>
-    <br>
-    <%= button_to "Очистить", admin_logs_from_controllers_path, method: :get %>
-</details>
-<hr>
+<%= render "filter_form", url: admin_logs_from_controllers_path %>
 
 <div>
     <% @logs.each do |log|%>
-        <p>
-            создан: <%= log.created_at %><br>
-            последнее обновление: <%= log.updated_at %><br>
-            id: <%= log.id %><br>
-            request_id: <%= log.request_id %><br>
-            ip: <%= log.remote_ip %><br>
-            method: <%= log.method %><br>
-            path: <%= log.path %><br>
-            get параметры: <%= log.query_string %><br>
-            post параметры: <%= log.request_parameters %><br>
-        </p>
-        <hr>
+        <%= render "log", log: log %>
     <% end %>
 </div>
 
