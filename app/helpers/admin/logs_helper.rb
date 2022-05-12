@@ -8,7 +8,8 @@ module Admin::LogsHelper
           :request_id, 
           :path, 
           :post_parameters,
-          :exact_match
+          :exact_match,
+          :commit
         )
     end
 end
