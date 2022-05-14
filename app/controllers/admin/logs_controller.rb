@@ -1,59 +1,40 @@
 class Admin::LogsController < Admin::AdminController
+  include Pagination
+
   def from_controllers
-    @logs = Log.filtered_logs(params)
+    @logs = Log.order(:created_at).filter_form(filter_params)
 
-    @current_page = current_page
-    page_size     = 6
-    log_count     = @logs.count
-    @last_page    = log_count / page_size + (log_count % page_size == 0 && log_count > 0 ? 0 : 1)
-    offset        = (@current_page - 1) * page_size
-
-    if @current_page > @last_page
-      @current_page = @last_page
-      offset        = (@current_page - 1) * page_size
-    end
+    @page_size    = 6
+    @last_page    = get_a_last_page(@logs.count)
+    @current_page = get_a_current_page
     
-    @logs = @logs.offset(offset).limit(page_size)
+    @logs = @logs.offset(get_an_offset).limit(@page_size)
   end
 
   def from_controllers_all
-    @logs = Log.filtered_logs(params)
+    @logs = Log.order(:created_at).filter_form(filter_params)
   end
 
   def from_file
-    @current_page = current_page
-    @logs         = File.readlines Rails.application.root + "log/production.log"
-    @logs         = logs_filter(@logs)
-    page_size     = 20
-    @last_page    = @logs.size / page_size + (@logs.size % page_size == 0 ? 0 : 1)
+    @logs = FileLogs.new("log/#{Rails.env}.log").filter_logs(params[:filter])
 
-    begin_log = (@current_page - 1) * page_size
+    @page_size    = 20
+    @last_page    = get_a_last_page(@logs.size)
+    @current_page = get_a_current_page
 
-    if begin_log > @logs.size
-      begin_log     = @logs.size - (@logs.size % page_size)
-      @current_page = @last_page
-    end
-      
-    @logs = @logs[begin_log, page_size]
+    @logs = @logs[get_an_offset, @page_size]
   end
 
   def from_file_all
-    @logs = File.readlines(Rails.application.root + "log/production.log")
-    @logs = logs_filter(@logs)
+    @logs = FileLogs.new("log/#{Rails.env}.log").filter_logs(params[:filter])
   end
 
 
   private
-    def current_page
-      page = (params[:current_page]&.match(/\A\d+/)&.to_s&.to_i || 1)
-      page == 0 ? 1 : page
-    end
+    def filter_params 
+      attrs = [ :id, :ip, :get_parameters, :method, :request_id, :path, 
+                :exact_path, :post_parameters ].map(&:to_s)
 
-    def logs_filter logs
-      if params[:filter]
-        logs.select { |log| log.downcase.include?(params[:filter].downcase) } 
-      else
-        logs
-      end
+      params.select { |key, value| attrs.include?(key) and !(value.strip.empty?) }
     end
 end

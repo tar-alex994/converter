@@ -22,8 +22,8 @@
         <%= form.label :path, " - path"%>
         </p>
         <p>
-        <%= form.check_box :exact_match, checked: (params[:exact_match] == '1' ? true : false) %>
-        <%= form.label :exact_match, "Точное совпадение path" %>
+        <%= form.check_box :exact_path, checked: (params[:exact_path] == '1' ? true : false) %>
+        <%= form.label :exact_path, "Точное совпадение path" %>
         </p>
         <p>
         <%= form.text_field :get_parameters, value: params[:get_parameters] %>
