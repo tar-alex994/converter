@@ -1,0 +1,23 @@
+<%= form_with url: url, method: :get do |form| %>
+    <%= form.label :page_size, "Количество элементов на странице:" %>
+    <%= form.text_field :page_size, value: @page_size %>
+
+    <% if params[:id] %>
+        <%= form.hidden_field :id,              value: params[:id] %>
+        <%= form.hidden_field :ip,              value: params[:ip] %>
+        <%= form.hidden_field :get_parameters,  value: params[:get_parameters] %>
+        <%= form.hidden_field :method,          value: params[:method] %>
+        <%= form.hidden_field :request_id,      value: params[:request_id] %>
+        <%= form.hidden_field :path,            value: params[:path] %>
+        <%= form.hidden_field :post_parameters, value: params[:post_parameters] %>
+        <%= form.hidden_field :exact_match,     value: params[:exact_match] %>
+    <% end %>
+
+    <% if params[:filter] %>
+        <%= form.hidden_field :filter, value: params[:filter] %>
+    <% end %>
+
+    <%= form.hidden_field :current_page, value: @current_page %>
+
+    <%= form.submit "изменить количество элементов" %>
+<% end %>

@@ -4,7 +4,7 @@ class Admin::LogsController < Admin::AdminController
   def from_controllers
     @logs = Log.order(:created_at).filter_form(filter_params)
 
-    @page_size    = 6
+    @page_size    = get_a_page_size
     @last_page    = get_a_last_page(@logs.count)
     @current_page = get_a_current_page
     
@@ -18,7 +18,7 @@ class Admin::LogsController < Admin::AdminController
   def from_file
     @logs = FileLogs.new("log/#{Rails.env}.log").filter_logs(params[:filter])
 
-    @page_size    = 20
+    @page_size    = get_a_page_size
     @last_page    = get_a_last_page(@logs.size)
     @current_page = get_a_current_page
 

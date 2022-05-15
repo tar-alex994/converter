@@ -33,6 +33,9 @@
         <%= form.text_field :post_parameters, value: params[:post_parameters] %>
         <%= form.label :post_parameters, " - post параметры"%>
         </p>
+        
+        <%= form.hidden_field :page_size, value: @page_size %>
+
         <%= form.submit "Отфильтровать" %>
     <% end %>
     <br>
