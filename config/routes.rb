@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   end
   
   root 'converter#index'
+
+  resources :products
 end

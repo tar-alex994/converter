@@ -21,6 +21,10 @@
         <p class='input'>Браковать c: <div class="text"><%= @date_of_60_precent.strftime "%d - %m - %y" %></div></p>
         <%= button_to 'Очистить', '/', method: :get %>
     </div>
+
+    <div>
+        <%= button_to "Сохранить", new_product_path, method: :get %>
+    </div>
 <% end %>
 
 <% if params[:switch] or @storage_life %>
