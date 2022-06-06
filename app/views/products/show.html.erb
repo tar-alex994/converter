@@ -1,2 +1,11 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<div>
+    Браковать с: <%= @product.date_of_rejection %>
+</div>
+
+<div>
+    PLU: <%= @product.plu %>
+</div>
+
+<div>
+    Количество: <%= @product.quantity %> <%= @product.type_of_quantity %>
+</div>
