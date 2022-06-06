@@ -8,6 +8,8 @@ class ProductsController < ApplicationController
   end
 
   def create
+    @product = Product.create(product_params)
+    redirect_to @product
   end
 
   def show
@@ -21,4 +23,9 @@ class ProductsController < ApplicationController
 
   def destroy
   end
+
+  private
+    def product_params
+      params.require(:product).permit(:plu, :quantity, :type_of_quantity, :date_of_rejection)
+    end
 end
