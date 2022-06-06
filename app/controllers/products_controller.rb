@@ -3,6 +3,8 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @product = Product.new
+    @date_of_rejection = params[:date_of_rejection]
   end
 
   def create

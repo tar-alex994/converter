@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_06_185300) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_06_153426) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_06_185300) do
     t.index ["method"], name: "index_logs_on_method"
     t.index ["query_string"], name: "index_logs_on_query_string"
     t.index ["remote_ip"], name: "index_logs_on_remote_ip"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "date_of_rejection"
+    t.string "plu"
+    t.string "quantity"
+    t.string "type_of_quantity"
   end
 
 end
