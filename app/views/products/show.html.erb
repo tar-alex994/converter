@@ -9,3 +9,5 @@
 <div>
     Количество: <%= @product.quantity %> <%= @product.type_of_quantity %>
 </div>
+
+<%= button_to "Весь список", products_path, method: :get %>
