@@ -10,5 +10,8 @@
     <div>
         Количество: <%= product.quantity %> <%= product.type_of_quantity %>
     </div>
+
+    <%= button_to "Удалить", product_path(product), method: :delete %>
+
     <hr>
 <% end %>
