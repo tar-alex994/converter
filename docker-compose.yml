@@ -22,5 +22,6 @@ services:
       - db
     volumes:
       - /var/converter_application/rails_logs:/usr/application/log
+      - /var/converter_application/storage:/usr/application/storage
     ports:
       - "80:3000"
