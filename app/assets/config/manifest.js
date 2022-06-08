@@ -3,3 +3,4 @@
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js
 //= link converter/converter.css
+//= link products/products.css
