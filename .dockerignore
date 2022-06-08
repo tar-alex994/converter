@@ -13,3 +13,5 @@ tmp/**
 Dockerfile
 docker-compose.yml
 docker_compose_for_server
+
+storage
