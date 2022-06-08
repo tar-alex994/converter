@@ -1,0 +1,7 @@
+#!bin/bash
+docker build -t alex994/converter_application:latest .
+docker push alex994/converter_application:latest
+
+ssh server docker pull alex994/converter_application:latest
+ssh server 'cd /usr/converter_application && docker-compose down'
+ssh server 'cd /usr/converter_application && PG_USER=postgres PG_PASSWORD=nfhfypostgres docker-compose up -d'
