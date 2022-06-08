@@ -31,6 +31,12 @@
 <% if params[:switch] or @storage_life %>
     <div><%= button_to "Поменять на дату", '/', method: :get%></div>
 <% else %>
-    <div><%= button_to "Поменять на срок годности", '/', method: :get, params: { switch: true } %></div>
+    <div>
+        <%= button_to "Поменять на срок годности", '/', method: :get, params: { switch: true } %>
+    </div>
 <% end %>
+
+<div>
+    <%= button_to "Товар на продажу", products_path, method: :get %>
+</div>
 </div>
