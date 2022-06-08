@@ -16,5 +16,9 @@
         <%= form.label :type_of_quantity_sht, 'шт' %>
     </div>
 
+    <div>
+        <%= form.file_field :photos, :multiple => true, accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
+
     <%= form.submit "сохранить" %>
 <% end %>

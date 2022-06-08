@@ -10,4 +10,10 @@
     Количество: <%= @product.quantity %> <%= @product.type_of_quantity %>
 </div>
 
+<div>
+    <% @product.photos.each do |photo| %>
+        <%= image_tag photo %>
+    <% end %>
+</div>
+
 <%= button_to "Весь список", products_path, method: :get %>
