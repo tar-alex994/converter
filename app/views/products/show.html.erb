@@ -16,4 +16,10 @@
     <% end %>
 </div>
 
-<%= button_to "Весь список", products_path, method: :get %>
+<div>
+    <%= button_to "Удалить", product_path(@product), method: :delete %>
+</div>
+
+<div>
+    <%= button_to "Весь список", products_path, method: :get %>
+</div>
