@@ -18,3 +18,11 @@
     <hr>
     <hr>
 <% end %>
+
+<% if @products.size == 0 %>
+    <div>Нет сохранных товаров</div>
+<% end %>
+
+<div>
+    <%= button_to "Вернуться на главную", root_path, method: :get %>
+</div>
