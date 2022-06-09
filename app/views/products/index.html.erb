@@ -12,6 +12,10 @@
     </div>
 
     <div>
+        <%= image_tag product.photos.last %>
+    </div>
+
+    <div>
         <%= button_to "Подробнее", product_path(product), method: :get %>
     </div>
 
