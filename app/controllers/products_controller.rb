@@ -31,6 +31,6 @@ class ProductsController < ApplicationController
   private
     def product_params
       params.require(:product).permit(:plu, :quantity, :type_of_quantity, 
-                                      :date_of_rejection, photos: [])
+                                      :date_of_rejection, :photos)
     end
 end

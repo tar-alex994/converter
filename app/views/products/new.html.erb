@@ -10,15 +10,33 @@
 
     <div>
         Количество: <%= form.number_field :quantity %>
+    </div>
+
+    <div>
         <%= form.radio_button :type_of_quantity, "кг" %>
         <%= form.label :type_of_quantity_kg, 'кг' %>
+    </div>
+
+    <div>
         <%= form.radio_button :type_of_quantity, "шт" %>
         <%= form.label :type_of_quantity_sht, 'шт' %>
     </div>
 
-    <div>
-        <%= form.file_field :photos, :multiple => true, accept: 'image/png,image/gif,image/jpeg' %>
+    <div class="file-upload">
+    <label>
+        <%= form.file_field :photos, accept: 'image/png,image/gif,image/jpeg',
+                            onchange: "getFileName();" %>
+        <span id="input-text">загрузить фото</span>
+    </label>
     </div>
+
+    <div id="file-name"></div>
 
     <%= form.submit "сохранить" %>
 <% end %>
+
+<script type="text/javascript">
+    function getFileName() {
+        document.getElementById('input-text').innerHTML = "фото загружено";
+    }
+</script>
