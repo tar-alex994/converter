@@ -1,2 +1,32 @@
-<h1>Products#edit</h1>
-<p>Find me in app/views/products/edit.html.erb</p>
+<div>
+<%= form_with model: @product, method: :put do |form| %>
+    <div>
+        <%= form.hidden_field :date_of_rejection, value: @date_of_rejection %>
+        Браковать с: <%= @date_of_rejection %>
+    </div>
+
+    <div>
+        PLU: <%= form.number_field :plu %>
+    </div>
+
+    <div>
+        Количество: <%= form.number_field :quantity %>
+    </div>
+
+    <div>
+        <%= form.radio_button :type_of_quantity, "кг" %>
+        <%= form.label :type_of_quantity_кг, 'кг' %>
+    </div>
+
+    <div>
+        <%= form.radio_button :type_of_quantity, "шт" %>
+        <%= form.label :type_of_quantity_шт, 'шт' %>
+    </div>
+
+    <%= form.submit "сохранить" %>
+<% end %>
+</div>
+
+<div>
+    <%= button_to "отменить", product_path(@product), method: :get %>
+</div>

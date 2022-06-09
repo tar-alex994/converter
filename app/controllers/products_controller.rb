@@ -18,9 +18,13 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(params[:id])
   end
 
   def update
+    @product = Product.find(params[:id])
+    @product.update(update_product_params)
+    redirect_to @product
   end
 
   def destroy
@@ -42,5 +46,9 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:plu, :quantity, :type_of_quantity, 
                                       :date_of_rejection, :photos)
+    end
+
+    def update_product_params 
+      params.require(:product).permit(:plu, :quantity, :type_of_quantity)
     end
 end

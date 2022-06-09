@@ -21,6 +21,10 @@
 </div>
 
 <div>
+    <%= button_to "редактировать", edit_product_path, method: :get %>
+</div>
+
+<div>
     <%= button_to "удалить", product_path(@product), method: :delete, 
                   onclick: "return confirm('Точно удалить?')" %>
 </div>
