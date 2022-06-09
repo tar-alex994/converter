@@ -12,7 +12,9 @@
     </div>
 
     <div>
-        <%= image_tag product.photos.last %>
+        <% if product.photos.last %>
+            <%= image_tag product.photos.last %>
+        <% end %>
     </div>
 
     <div>
