@@ -1,0 +1,23 @@
+<div>
+<%= form_with url: add_photo_product_path(@product) do |form| %>
+    <div class="file-upload">
+    <label>
+        <%= form.file_field :photo, accept: 'image/png,image/gif,image/jpeg',
+                            onchange: "getFileName();" %>
+        <span id="input-text">выбрать фото</span>
+    </label>
+    </div>
+
+    <%= form.submit "сохранить" %>
+<% end %>
+</div>
+
+<div>
+    <%= button_to "отменить", product_path(@product), method: :get %>
+</div>
+
+<script type="text/javascript">
+    function getFileName() {
+        document.getElementById('input-text').innerHTML = "фото выбрано";
+    }
+</script>

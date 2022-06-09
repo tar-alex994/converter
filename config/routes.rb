@@ -14,5 +14,10 @@ Rails.application.routes.draw do
   
   root 'converter#index'
 
-  resources :products
+  resources :products do
+    member do
+      get  "add_photo", action: :add_photo_form
+      post "add_photo"
+    end
+  end
 end

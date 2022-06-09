@@ -17,10 +17,14 @@
 </div>
 
 <div>
+    <%= button_to "добавить фото", add_photo_product_path, method: :get %>
+</div>
+
+<div>
     <%= button_to "Удалить", product_path(@product), method: :delete, 
                   onclick: "return confirm('Точно удалить?')" %>
 </div>
 
 <div>
-    <%= button_to "Весь список", products_path, method: :get %>
+    <%= button_to "весь список", products_path, method: :get %>
 </div>

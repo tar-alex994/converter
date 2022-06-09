@@ -28,6 +28,16 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  def add_photo_form
+    @product = Product.find(params[:id])
+  end
+
+  def add_photo
+    @product = Product.find(params[:id])
+    @product.photos.attach(params[:photo])
+    redirect_to @product
+  end
+
   private
     def product_params
       params.require(:product).permit(:plu, :quantity, :type_of_quantity, 
