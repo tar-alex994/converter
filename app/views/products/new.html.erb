@@ -26,7 +26,7 @@
     <label>
         <%= form.file_field :photos, accept: 'image/png,image/gif,image/jpeg',
                             onchange: "getFileName();" %>
-        <span id="input-text">загрузить фото</span>
+        <span id="input-text">выбрать фото</span>
     </label>
     </div>
 
@@ -37,6 +37,6 @@
 
 <script type="text/javascript">
     function getFileName() {
-        document.getElementById('input-text').innerHTML = "фото загружено";
+        document.getElementById('input-text').innerHTML = "фото выбрано";
     }
 </script>

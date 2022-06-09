@@ -10,7 +10,7 @@
         <div class='label-text'><%= form.label :expiration_date, "Годен до:"%></div>
         <div><%= form.date_field :expiration_date, value: params[:expiration_date], class: :size %></div>
     <% end %>
-    <%= form.submit 'Рассчитать', class: 'size'%>
+    <%= form.submit 'рассчитать', class: 'size'%>
 <% end %>
 </div>
 
@@ -19,24 +19,24 @@
 <% if @date_of_60_precent %>
     <div>
         <p class='input'>Браковать c: <div class="text"><%= @date_of_60_precent.strftime "%d - %m - %y" %></div></p>
-        <%= button_to 'Очистить', '/', method: :get %>
+        <%= button_to 'очистить', '/', method: :get %>
     </div>
 
     <div>
-        <%= button_to "Сохранить", new_product_path, method: :get, 
+        <%= button_to "сохранить", new_product_path, method: :get, 
                       params: {date_of_rejection: @date_of_60_precent.strftime("%d - %m - %Y") } %>
     </div>
 <% end %>
 
 <% if params[:switch] or @storage_life %>
-    <div><%= button_to "Поменять на дату", '/', method: :get%></div>
+    <div><%= button_to "поменять на дату", '/', method: :get%></div>
 <% else %>
     <div>
-        <%= button_to "Поменять на срок годности", '/', method: :get, params: { switch: true } %>
+        <%= button_to "поменять на срок годности", '/', method: :get, params: { switch: true } %>
     </div>
 <% end %>
 
 <div>
-    <%= button_to "Товар на продажу", products_path, method: :get %>
+    <%= button_to "товар на продажу", products_path, method: :get %>
 </div>
 </div>
