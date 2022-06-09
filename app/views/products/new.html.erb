@@ -1,7 +1,7 @@
 <%= form_with model: @product do |form| %>
     <div>
-        <%= form.hidden_field :date_of_rejection, value: @date_of_rejection %>
-        Браковать с: <%= @date_of_rejection %>
+        <%= form.hidden_field :date_of_rejection, value: @product.date_of_rejection %>
+        Браковать с: <%= @product.date_of_rejection %>
     </div>
 
     <div>
