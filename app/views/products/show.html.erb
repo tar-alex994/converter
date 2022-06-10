@@ -36,3 +36,9 @@
 <div>
     <%= button_to "все товары на продажу", products_path, method: :get %>
 </div>
+
+<div>
+    <% whatsapp_text = "PLU: #{@product.plu}%0AКоличество: #{@product.quantity} "\
+                       "#{@product.type_of_quantity}"%>
+    <a href="whatsapp://send/?text=<%= whatsapp_text %>">поделиться через whatsapp</a>
+</div>
