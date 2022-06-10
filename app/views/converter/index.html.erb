@@ -23,7 +23,7 @@
     </div>
 
     <div>
-        <%= button_to "сохранить", new_product_path, method: :get, 
+        <%= button_to "добавить товар на продажу", new_product_path, method: :get, 
                       params: {date_of_rejection: @date_of_60_precent.strftime("%d - %m - %Y") } %>
     </div>
 <% end %>
@@ -37,6 +37,6 @@
 <% end %>
 
 <div>
-    <%= button_to "товар на продажу", products_path, method: :get %>
+    <%= button_to "все товары на продажу", products_path, method: :get %>
 </div>
 </div>
