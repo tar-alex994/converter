@@ -1,34 +1,36 @@
-<% @products.each do |product| %>
-    <div>
-    Браковать с: <%= product.date_of_rejection %>
-    </div>
-
-    <div>
-        PLU: <%= product.plu %>
-    </div>
-
-    <div>
-        Количество: <%= product.quantity %> <%= product.type_of_quantity %>
-    </div>
-
-    <div>
-        <% if product.photos.last %>
-            <%= image_tag product.photos.last %>
-        <% end %>
-    </div>
-
-    <div>
-        <%= button_to "подробнее", product_path(product), method: :get %>
-    </div>
-
-    <hr>
-    <hr>
-<% end %>
-
-<% if @products.size == 0 %>
-    <div>Нет сохранных товаров</div>
-<% end %>
-
 <div>
     <%= button_to "вернуться на главную", root_path, method: :get %>
+    <hr size="10px" color="green">
+</div>
+
+<div>
+<% if @products.size == 0 %>
+    Нет сохранных товаров
+<% else %>
+    <% @products.each do |product| %>
+        <div>
+        Браковать с: <%= product.date_of_rejection %>
+        </div>
+
+        <div>
+            PLU: <%= product.plu %>
+        </div>
+
+        <div>
+            Количество: <%= product.quantity %> <%= product.type_of_quantity %>
+        </div>
+
+        <div>
+            <% if product.photos.last %>
+                <%= image_tag product.photos.last %>
+            <% end %>
+        </div>
+
+        <div>
+            <%= button_to "подробнее", product_path(product), method: :get %>
+        </div>
+
+        <hr class="separator-hr">
+    <% end %>
+<% end %>
 </div>
