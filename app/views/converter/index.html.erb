@@ -23,8 +23,16 @@
     </div>
 
     <div>
+        <% add_product_parametrs = {
+            date_of_rejection:    @date_of_60_precent.strftime("%d - %m - %Y"),
+            production_date:      @date.strftime("%d - %m - %Y"),
+            expiration_date_type: (@storage_life ? "interval" : "date"),
+            expiration_date:      (@storage_life ? @storage_life : 
+                                                   @expiration_date.strftime("%d - %m - %Y"))
+        }%>
+
         <%= button_to "добавить товар на продажу", new_product_path, method: :get, 
-                      params: {date_of_rejection: @date_of_60_precent.strftime("%d - %m - %Y") } %>
+                      params: add_product_parametrs %>
     </div>
 <% end %>
 

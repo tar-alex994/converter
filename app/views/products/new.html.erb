@@ -1,11 +1,24 @@
 <%= form_with model: @product do |form| %>
     <div>
-        <%= form.hidden_field :date_of_rejection, value: @product.date_of_rejection %>
-        Браковать с: <%= @product.date_of_rejection %>
+        <%= form.hidden_field :production_date, value: @product.production_date %>
+        Дата изготовления: <%= @product.production_date %>
     </div>
 
     <div>
-        PLU: <%= form.number_field :plu %>
+        <% if @product.expiration_date_type == "interval" %>
+            <%= form.hidden_field :expiration_date_type, value: @product.expiration_date_type %>
+            <%= form.hidden_field :expiration_date,      value: @product.expiration_date %>
+            Срок годности: <%= @product.expiration_date %> суток
+        <% elsif @product.expiration_date_type == "date" %>
+            <%= form.hidden_field :expiration_date_type, value: @product.expiration_date_type %>
+            <%= form.hidden_field :expiration_date,      value: @product.expiration_date %>
+            Годен до: <%= @product.expiration_date %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.hidden_field :date_of_rejection, value: @product.date_of_rejection %>
+        Браковать с: <%= @product.date_of_rejection %>
     </div>
 
     <div>
@@ -16,10 +29,18 @@
         <%= form.radio_button :type_of_quantity, "кг" %>
         <%= form.label :type_of_quantity_kg, 'кг' %>
     </div>
-
+    
     <div>
         <%= form.radio_button :type_of_quantity, "шт" %>
         <%= form.label :type_of_quantity_sht, 'шт' %>
+    </div>
+
+    <div>
+        Описание: <%= form.text_field :description %>
+    </div>
+
+    <div>
+        PLU: <%= form.number_field :plu %>
     </div>
 
     <div class="file-upload">

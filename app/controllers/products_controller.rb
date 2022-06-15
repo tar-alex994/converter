@@ -4,8 +4,11 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product                   = Product.new
-    @product.date_of_rejection = params[:date_of_rejection]
+    @product                      = Product.new
+    @product.date_of_rejection    = params[:date_of_rejection]
+    @product.production_date      = params[:production_date]
+    @product.expiration_date_type = params[:expiration_date_type]
+    @product.expiration_date      = params[:expiration_date]
   end
 
   def create
@@ -44,8 +47,10 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:plu, :quantity, :type_of_quantity, 
-                                      :date_of_rejection, :photos)
+      params.require(:product).permit(
+        :plu, :quantity, :type_of_quantity, :date_of_rejection, :photos, 
+        :production_date, :description, :expiration_date_type, :expiration_date
+      )
     end
 
     def update_product_params 
