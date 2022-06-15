@@ -1,4 +1,16 @@
 <div>
+    Дата изготовления: <%= @product.production_date %>
+</div>
+
+<div>
+    <% if @product.expiration_date_type == "interval" %>
+        Срок годности: <%= @product.expiration_date %> суток
+    <% elsif @product.expiration_date_type == "date" %>
+        Годен до: <%= @product.expiration_date %>
+    <% end %>
+</div>
+
+<div>
     Браковать с: <%= @product.date_of_rejection %>
 </div>
 
@@ -8,6 +20,10 @@
 
 <div>
     Количество: <%= @product.quantity %> <%= @product.type_of_quantity %>
+</div>
+
+<div>
+    Описание: <%= @product.description %>
 </div>
 
 <div>
