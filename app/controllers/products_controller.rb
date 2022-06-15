@@ -54,6 +54,6 @@ class ProductsController < ApplicationController
     end
 
     def update_product_params 
-      params.require(:product).permit(:plu, :quantity, :type_of_quantity)
+      params.require(:product).permit(:plu, :quantity, :type_of_quantity, :description)
     end
 end
