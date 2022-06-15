@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_08_104251) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_15_215512) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_08_104251) do
     t.string "plu"
     t.string "quantity"
     t.string "type_of_quantity"
+    t.string "description"
+    t.string "production_date"
+    t.string "expiration_date_type"
+    t.string "expiration_date"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
