@@ -1,4 +1,4 @@
-FROM ruby:3.0.1-alpine
+FROM ruby:3.0.4-alpine
 
 RUN apk add postgresql-dev gcc musl-dev make
 

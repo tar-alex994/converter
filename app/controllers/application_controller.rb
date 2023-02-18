@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :add_log
+    # before_action :add_log
 
     private
         def add_log

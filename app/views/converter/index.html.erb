@@ -10,7 +10,9 @@
         <div class='label-text'><%= form.label :expiration_date, "Годен до:"%></div>
         <div><%= form.date_field :expiration_date, value: params[:expiration_date], class: :size %></div>
     <% end %>
-    <%= form.submit 'рассчитать', class: 'size'%>
+    <%= form.submit 'рассчитать 40%', class: 'size'%>
+    <br />
+    <%= form.submit 'рассчитать 20%', class: 'size'%>
 <% end %>
 </div>
 
@@ -18,7 +20,7 @@
 
 <% if @date_of_60_precent %>
     <div>
-        <p class='input'>Браковать c: <div class="text"><%= @date_of_60_precent.strftime "%d - %m - %y" %></div></p>
+        <p class='input'>Браковать(<%=@value%>%) c: <div class="text"><%= @date_of_60_precent.strftime "%d - %m - %y" %></div></p>
         <%= button_to 'очистить', '/', method: :get %>
     </div>
 

@@ -36,22 +36,22 @@ module Converter
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.before_initialize do 
-      unless( Rails.application.credentials.admin &&
-        Rails.application.credentials.admin.login &&
-        Rails.application.credentials.admin.password )
+    # config.before_initialize do 
+    #   unless( Rails.application.credentials.admin &&
+    #     Rails.application.credentials.admin.login &&
+    #     Rails.application.credentials.admin.password )
         
-        abort(
-          "\e[31m  Error of configuration!!!\e[0m\n"\
-          "  Add admin configuration in /config/credentials.yml.enc with "\
-          "'bin/rails credentials:edit' :\n"\
-          "  Example:\n"\
-          "\n"\
-          "  admin:\n"\
-          "    login: login\n"\
-          "    password: password\n" 
-        )
-      end
-    end
+    #     abort(
+    #       "\e[31m  Error of configuration!!!\e[0m\n"\
+    #       "  Add admin configuration in /config/credentials.yml.enc with "\
+    #       "'bin/rails credentials:edit' :\n"\
+    #       "  Example:\n"\
+    #       "\n"\
+    #       "  admin:\n"\
+    #       "    login: login\n"\
+    #       "    password: password\n" 
+    #     )
+    #   end
+    # end
   end
 end
